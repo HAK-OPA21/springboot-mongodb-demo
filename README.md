@@ -13,6 +13,7 @@ spring.data.mongodb.database=*din databas*.  <-- uppdatera till de du döpt din 
 http://localhost:8080/api/student/create
 
 Börja med att skapa en student genom att använda tex. Postman. Du kan kopiera eller skapa en student enligt följande:
+
 {
     "name": "Helena",
     "email": "helena@klarr.se",
@@ -50,6 +51,7 @@ Här lägger vi vår unika identifier i vår request body och inte direkt i vår
 möjligheten att faktiskt skapa en ny student om ingen unik identifier bifogas. Så det här är egentligen spara eller uppdatera berodende på om vi skickar  med 
 något id eller inte i vår request body. 
 Exempel:
+
 {
     "id": **"kopiera id från din databas och klistra in här"**
     "name": "Helena UPPDATERAD", <--- ändra något tex lägg till text
@@ -91,13 +93,16 @@ http://localhost:8080/api/student/studentsByNameAndMail
 
 Precis som studentsByName är det här inte native MongoDB utan med hjälp av MongoDB proxyn kan vi skapa våra egna metoder som är kopplade till våra unika
 fält. **OBS! Var noga med att ange korrekt fält i ditt interface! Nedanstående kommer att ge dig error pga String name kommer att kopplas ihop med fältet email**
-List <Student> findByEmailAndName (String name, String email)
+
+	`code`List <Student> findByEmailAndName (String name, String email);	`code`
 
 email måste alltså vara före name för att det här ska fungera:
-List <Student> findByEmailAndName (String email, String name)
+List <Student> findByEmailAndName (String email, String name);
   
 Vi använder List här eftersom vi vill kunna returnera fler än ett dokument från vår databas. Om vi tar bort List kommer vi bara kunna att returnera ett dokument
   från databasen. Testa gärna men glöm inte att ändra repository, service och controller.
+    
+
   
 
 
