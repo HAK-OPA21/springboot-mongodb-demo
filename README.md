@@ -94,15 +94,19 @@ http://localhost:8080/api/student/studentsByNameAndMail
 Precis som studentsByName är det här inte native MongoDB utan med hjälp av MongoDB proxyn kan vi skapa våra egna metoder som är kopplade till våra unika
 fält. **OBS! Var noga med att ange korrekt fält i ditt interface! Nedanstående kommer att ge dig error pga String name kommer att kopplas ihop med fältet email**
 
-	`code`List <Student> findByEmailAndName (String name, String email);	`code`
+`List <Student> findByEmailAndName (String name, String email);`
 
-email måste alltså vara före name för att det här ska fungera:
-List <Student> findByEmailAndName (String email, String name);
+**email måste alltså vara före name för att det här ska fungera:**
+`List <Student> findByEmailAndName (String email, String name);`
   
 Vi använder List här eftersom vi vill kunna returnera fler än ett dokument från vår databas. Om vi tar bort List kommer vi bara kunna att returnera ett dokument
   från databasen. Testa gärna men glöm inte att ändra repository, service och controller.
     
+### OR operator med flera fält
+### GET - studenter med fält name ELLER fält email
+http://localhost:8080/api/student/studentsByNameOrMail
 
+Precis samma gäller här som för AND exemplet. Se till att du  returnerar en lista eftersom vi kan hitta flera dokument med dessa fält. Samma gäller ordningen i ditt interface, här behöver alltså String name vara först. 
   
 
 
